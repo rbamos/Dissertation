@@ -1,0 +1,150 @@
+\section{Data collection} \label{sec:dataset}
+
+We collected and constructed three longitudinal datasets to study reviews on Yelp. We present background on Yelp in Section \ref{subsec:background}, we describe the difference between our three datasets in Section \ref{subsec:target_set}, and we describe our crawling process in Section \ref{subsec:crawling}.
+
+
+
+
+ 
+% \raNote{If Roland gets an arXiv paper up before the deadline, maybe we can cite that here}
+
+\subsection{Background} \label{subsec:background}
+
+Yelp breaks reviews into two primary categories, assigned by a software classifer. The categories are ``Recommended'' and ``Not Recommended''. Yelp lists four reasons for classifying a review as ``Not Recommended'': conflicts of interest, solicited reviews, reliability, and usefulness. Not Recommended reviews do not affect metrics and are displayed less prominently than Recommended reviews~\cite{yelpwhyrec,yelprecommendationsoftware,yelpstarrating}. In order to study the classifier, it is important that we collect both Recommended and Not Recommended reviews. Yelp also shows a third class: ``Removed for Violating our Terms of Service'', which we do not use in our analysis. While Yelp has published an official review dataset for academic purposes~\cite{yelpacademicdataset}, this dataset is not up-to-date and does not include Not Recommended reviews.
+
+We chose to study Yelp because prior work had established reference datasets we could compare against; we chose to use \citet{mukherjee2013yelp}'s dataset of Yelp reviews, collected in 2012, which contains both Recommended and Not Recommended reviews from around 200 restaurants and hotels in Chicago.
+%\pmNote{why did we choose this? what is this dataset about}
+Furthermore, unlike many other platforms, Yelp allows access to reviews that it does not recommend.
+
+%\pmNote{Shouldn't this para preceed the discussion of Mukharje et al?}
+
+
+
+
+
+
+\subsection{Target set selection} \label{subsec:target_set}
+Selecting the target set, the set of zipcodes or businesses to study, required careful selection of sample.
+
+
+\textbf{Coarse crawl (EYG).} 
+The first dataset was a single crawl in which we recrawled the same businesses focused on by \citet{mukherjee2013yelp} Thus, our sample was fixed by the original crawl. Specifically, the Mukherjee et al. crawl collected all businesses from a target set, then collected all reviews from the authors posting reviews on the targeted businesses, finally they collected metadata for the businesses from those posts. We re-crawled Mukerjee et al.'s target set of businesses, since those are the businesses for which the we have the most complete data. We call this the ``eight year gap (EYG)'' crawl because Mukherjee et al. performed their crawl in 2012 and we performed ours in 2020. By comparing our crawl against Mukherjee's crawl, we are able to observe reclassifications in the reviews.
+
+%\pmNote{somewhere in this discussion, we need to make it clear that the metadata information we are collecting about the reviews includes recommended or not recommended status. also, we need to make it clear that comparison between Mukharjee's dataset and our dataset allows analysis of the dynamics of Yelp's classifier, by observing change in classification outcomes for reviews} \raNote{I added a table in Appendix A that I think should address the collected information. It's referenced in Section \ref{subsec:crawling}}
+
+\textbf{Fine crawl (CHI).}
+%\pmNote{why do we need a second crawl? what problem are we trying to solve?}
+While our coarse dataset shows changes over a long time scale, it does not reveal how frequently reclassifications occur. To address this, we built a second, finer grained dataset by repeatedly collecting reviews 8 times over 11 months. We chose to use the same zipcodes so that there would be some intersection with the EYG crawl businesses, helping contextualize those businesses, ensuring continued crawling of some EYG crawl businesses. Because the zipcodes are within a single metropolitan area, the Chicago area, we call this the ``Chicago (CHI)'' crawl. This more comprehensive but localized coverage of reviews allows for authors to be observed posting multiple reviews.
+
+\textbf{Population Density and Income (UDIS / UDS \& UIS).}
+Our fine grained dataset gives insight into a local review ecosystem, but it is possible that the sample chosen is not a representative sample. To address this, we collected a third dataset to obtain a broader range of reviews across the US. To allow for study of the impact of reviews in a diverse set of regions, we stratified regions along two axes: one of density, one of income. 
+%\pmNote{when we say density, should we instead say population density?}
+We collected density and income information from the US census~\cite{acs2019householdincome}, and used ZipCode Tabulated Areas (ZCTAs) as a proxy for zipcode. ZCTAs approximate USPS ZipCodes, and typically, but not universally, match them~\cite{census2020zctas}.
+
+For the density stratified crawl, we stratified zipcodes into 5 strata, dividing the strata evenly by population, using US census data for population estimates~\cite{acs2019populationtotal}. We uniformly sampled zipcodes from each strata until we had sampled at least 500 businesses from that strata, using the Yelp Fusion API to help us determine how many businesses were in each zipcode. We then collected 4 monthly crawls of each dataset. We repeated the same process for the income stratified crawl.
+
+The strata for the income crawls are: \$0--\$55k, \$55k--\$68k, \$68k--\$82k, \$82k--\$105k, \$105k--\$250k. The strata for the density crawls are: 0--67 ppl/$\text{km}^2$, 67--302 ppl$/\text{km}^2$, 302--881 ppl$/\text{km}^2$, 881--1,873 ppl$/\text{km}^2$, 1,873--57,541 ppl$/\text{km}^2$.
+
+Since the union of the income and density data is also a useful dataset as broader sample than the CHI dataset, we present some analyses with individual datasets, ``US Density Stratified (UDS)'' and ``US Income Statified (UIS)'', and some with the combined dataset, ``US Density and Income Stratified (UDIS)''.
+
+\subsection{Crawling}\label{subsec:crawling}
+
+
+% \pmNote{awkward to begin a subsection with a forward reference to the appendix. lets push this a bit later in the text}
+% \raNote{Might be good to discuss this tomorrow if you have time -- currently don't have space for the figures in the text}
+% \pmNote{regardless, the forward reference can be moved to the end of the para}
+Our crawling occurs in two phases.
+First, we have an initial setup phase to collect the set of businesses to crawl. 
+%\pmNote{the sentence is very vague. what does the setup phase do?}
+Then when have a crawl phase, where we repeatedly collect reviews. At each crawl timepoint, we visit each each of the targeted businesses to collect all reviews on that business. We provide an overview of our crawling process in Appendix \ref{apd:collection}, Figure \ref{fig:crawling_diagram}, and a list of data and metadata collected in Appendix \ref{apd:collection}, Table \ref{tab:data_collected}. 
+
+\textbf{Business data}
+To collect our data from Yelp, we first needed to identify the businesses in the target set. For the EYG crawl, we used Yelp's Fusion API~\cite{yelpfusion} to collect business URLs for the business identifiers we had. For the CHI and UDIS crawls, for each targeted zipcode we used Yelp's Fusion API to collect a list of all businesses. In situations where the search exceeded the API's response limit, we divided our query into multiple queries using other search parameters to reduce the size of the response. We took the union of the businesses returned by all queries and excluded any results that did not have an address with a targeted zipcodes. For each experiment, once our targeted business list was determined, it remained static for the duration of the experiment.
+
+\textbf{Technologies.}
+We used Pyppeteer~\cite{miyakogi2019May}, a Python port of Puppeteer, to build our webcrawler. We ran our crawler in headless mode to reduce system resource utilization. To mitigate IP bans for crawling,
+%\pmNote{detection of what? this is not clear}
+we performed our crawl over a VPN.
+
+\textbf{Crawling procedure.}
+The crawling process was as follows: we iterated each zipcode, then each business (in a non-deterministic order). 
+We navigated to the business's page, navigating through the list of reviews. 
+%If we detected an alert, we closed the alert.
+%\pmNote{what kind of alert? a bit confused here...}
+If we detected
+%that the page number did not match the page number we expected or the parser failed
+any inconsistencies in the page, we retried crawling the business. If we received a block page or exceeded 100 page loads since we changed our VPN connection, we connected to a new VPN server.
+%\pmNote{what does it mean to reset the vpn?}
+We then navigated to the Not Recommended reviews, where we repeated the same process to collect Not Recommended and Removed reviews. Yelp added an option to include vaccine and mask requirements in early August, 2021 \cite{yelp2021vaccination}. For crawls beginning after mid-August, 2021, we collected the list of ``amenities'', which includes mask and vaccine requirements. 
+
+
+%If we encounted an error, we attempt to recover progress from previous crawl attempts by skipping unneeded pages. This both increases crawl speed and reduces server load. For similar reasons, when we started our UDIS crawls, we stopped loading images during crawling. During startup and each VPN reset, we choose a random available location or server, and change the VPN connection to that location or server.
+
+The CHI and UDIS crawls were repeated multiple times to allow for a longitudinal perspective. We refer to crawl time-point by the dataset name and 1-indexed count (e.g. CHI-3 is the third crawl of the CHI dataset). We show the timeline of the crawls in Appendix \ref{apd:collection}, Figure \ref{fig:crawl_timeline}.
+
+%\raNote{Should make a diagram of when the crawls happened. Use the logs to recover this}
+
+\textbf{Quality checks.}
+Prior work has shown that web crawls using automation tools and headless browsers are easily detectable, and a website could choose to alter content delivered to automated clients \cite{jueckstock2021towards}. In light of this, we performed two checks to ensure the quality of our data. First, we performed an automated check to see review retention. Let $R_A$ be the set of reviews for crawl A. For each pair of crawls $(A,B)$, we checked $\left|R_A \cap R_B\right| / \left|R_A\right|$. This value never exceeds 4.5\% for any pair of adjacent crawls, nor 11\% for any pair of crawls from the same crawl, for either UDIS or CHI. Second, we did a manual check to ensure we collected reviews as they appear for a real user. We randomly selected 50 businesses and a random review position in these business. We manually retrieved the review at that position. Of these reviews, 49 were in our dataset, and 1 was posted after our collection ended.
+%\pmNote{wouldn't an additional quality check be manual inspection to ensure that the collected data for some businesses is the same as a human sees?}
+
+\textbf{Ethics}
+We identify two sources of ethical concerns with our study: the first is the privacy of the user data we've collected, and the second is the impact of our research on Yelp's servers. While all data collected is, or at one point was, publicly available, the review authors did not agree to have their data included in the study. In particular, we believe fields like author name, author location, and review text are sensitive. Therefore, we will require researchers requesting sensitive data to provide an adequate justification for access. To minimize the impact of our research on Yelp's servers, 
+%\pmNote{lets be consistent in the *ordering* and discussion of the two concerns}
+we limited the number of simultaneous crawling threads as much as possible, never exceeding six. We throttled our crawlers to reduce the impact, and we built our crawlers to minimize the pages scraped.
+
+
+
+%\raNote{We probably should have more checks}
+
+%\raNote{need to update checkers to handle removed reviews}
+
+\subsection{Post-processing and organization}
+%\pmNote{how about post-processing and organization?}
+
+We took some additional steps to clean up and organize our data.
+
+\textbf{Deduplication.}
+Our data has some duplicates. It is possible that some of these are real; for example, if the author accidentally submitted the review twice. However, it's also possible that because our crawls were not instantaneous, review order sometimes shifted during crawling, occasionally leading to double collection of the same review. In either case, such reviews may affect the accuracy of the analysis, and thus we removed these reviews.
+%\pmNote{need to rephrase the previous sentence....we don't want to shy away from challenges, but in this case it is more about accuracy of statistics...}
+To remove duplicate reviews, we removed reviews where all fields (e.g. text, author, date) are identical, retaining one copy.
+
+In our CHI-3 crawl,
+%\pmNote{would it be clear what CHI-3 means?}
+approximately 85,000 reviews appeared under both Recommended and Not Recommended, and appeared under Recommended for the adjacent crawls (CHI-2/CHI-4). This coincides with a major update to the Yelp recommendation software~\cite{yelp2021updates}. Because this event boosts the number of double reclassifications approximately 80-fold if we treat these reviews as Not Recommended, we keep the Recommended version.
+
+\textbf{Matching reviews.}
+We do not have a unique identifier for reviews, so we rely on heuristics to identify instances of the same review across crawls. To determine if two reviews match, we find all reviews with the same text. If two such reviews appear in the same crawl, we discard all reviews with that text, because we cannot disambiguate them (0.04\% of reviews for CHI and 0.04\% for UDIS). Otherwise, we assume the reviews with that text are the same review.
+
+\textbf{Determining authorship.}
+Unlike prior work~\cite{mukherjee2013yelp,rayana2015collective}, we were unable to find a universal identifier for authors. Instead, we found two sets of author identifiers: one for Recommended reviews, one for Not Recommended and Removed reviews. This may be due to site design changes on Yelp.
+%\pmNote{why was this different from prior work?}
+We considered matching authors based on metadata but observed too many false positives to consider this approach reliable. 
+%\raNote{would be good to have numbers -- manual analysis}
+However, for authors with at least one reclassified review, the combination of both identifiers serves as a universal identifier. Thus we focus our investigation of authorship on authors with at least one reclassified review.
+
+\textbf{Composition.} After completing the above cleanup and organization steps, we can examine the composition of the datasets. Table \ref{tab:composition} outlines the scale of the datasets after taking the above steps. CHI is the largest dataset in number of timepoints, number of reviews, and number of unique reviews, while EYG has the longest timespan.
+
+\begin{table*}[]
+    \centering
+    \caption{Composition of the datasets. ``\# reviews'' is the number of reviews collected; each review counts each time it is observed. ``\# unique reviews'' is the number of unique review texts. ``\# businesses'' is the number of businesses for which we observed any reviews. The ``\# authors'' range lower bound assumes all unmatched authors of Not Recommended reviews have a Recommended review in the dataset; the upper bound assumes they do not.
+    %\raNote{update, including EYG; double check percent reclass}. 
+    ``\% Recommended'' is averaged across all time-points. EYG data includes reviews from \citet{mukherjee2013yelp}'s crawl.}
+    \label{tab:composition}
+    %\resizebox{\columnwidth}{!}{
+        \begin{tabular}{lc|c|c|c}
+             & EYG & CHI & UDS & UIS \\
+    Timespan & 8 years & 11 months & 4 months & 4 months \\
+    \# Reviews & 263,308 & 10,485,007 & 1,409,059 & 1,145,995 \\
+    \# Unique reviews & 196,383 & 1,395,870 & 358,184 & 292,107\\
+    \# Businesses & 201 & 5,773 & 2,829 & 2,843\\
+    \# Time-points & 2 & 8 & 4 & 4 \\
+    \# Authors (range)  & 100,713 - 119,037 & 404,706 - 520,195 & 212,348 - 259,862 & 180,994 - 221,591\\
+    \% Reclassified & 8.69\% & 0.87\% & 0.54\% &  0.61\%\\
+    \% Recommended & 88.19\% & 88.90\% & 85.69\% & 85.22\% \\
+        \end{tabular}
+    %}
+\end{table*}
+
+\subsection{Availability}
+Our crawling and analysis software is available at (removed for anonymous review). On publication, our dataset will be available for researchers to access, with the text of reviews and authors' information replaced by a unique identifier. If the text of reviews or author data is needed, a special request can be made for that information.

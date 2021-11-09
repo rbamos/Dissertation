@@ -1,0 +1,19 @@
+\wwwcut{\section{Manual analysis of crawl failures}
+\label{apd:manual-err-verification}
+
+We manually labeled 100 policies for each of the following conditions, to ensure the quality of our methods:
+
+\textbf{No privacy policy link found on homepage.} 86 did not have a privacy policy anywhere on the site, based on our best efforts to find it. 4 had a privacy policy link on their homepage that we could not identify:  1/4 had a JavaScript popup link with an empty href element; 3/4 used a term that our link detection heuristics missed (e.g., ``Legal''). 2 had a policy link but it was image-based; the link contain no text that we could match against. 5 had a policy link on a different page than the homepage. 3 had no privacy policy link but the terms of service also contained the privacy policy.
+
+\textbf{Detected as non-English.} 99 were non-English. 1 was a mixed language website with some English text.
+
+\textbf{Detected as English.}  97 were only in English. 3 were mixed language with some English text.
+
+\textbf{Policy page is not archived during interval.} 100 were not archived during the given interval.
+
+\textbf{Blank homepage.} 65 were blank, i.e. contained no image or text. 13 were snapshots (median year=2001) that contained text, but they used a now obsolete ``<frameset>'' 
+element to markup their pages. This caused our crawler to extract the text that is in a different frame than the top-level document. 19 were sites that were entirely composed of images, an early design pattern that lost its popularity due to limited accessibility. 3 were blank, but redirected to another page after a certain time; in one case to a live website that our crawler would block.
+ }
+
+
+

@@ -1,0 +1,25 @@
+\section{Introduction} \label{sec:introduction}
+
+%\raNote{discussion order should be longitudinal $\to$ reclassification}
+
+%\raNote{six year gap $\to$ eight year gap!}
+
+%\raNote{The abstract is more detailed than the intro -- fix that (second paragraph of contributions)}
+
+Online reviews are an important source of consumer information, and they have a substantial impact on businesses' economic outcomes~\cite{luca2016reviews,anderson2012impact}. This creates incentives for various parties to engage in problematic reviewing practices~\cite{streitfeld2012buy,miller19plastic}. These problematic reviews can encompass a large spectrum of behaviors, such as the creation of new accounts for posting fake reviews, hijacking legitimate accounts, compensating real users for posting favorable reviews, incentivized reviews, reviews written by friends or competitors, or reviews that are not relevant to the product or service, and they are the subject of ongoing interest to regulators~\cite{jindal2008opinion,yelpwhyrec,ftc21notice}. To address the challenges posed by such problematic reviews, review platforms have created classification systems to present users with the best reviews to make informed decisions. A wealth of prior work has taken a variety of approaches to understanding online reviews and the underlying classification systems. This work ranges from studying the factors motivating both honest and problematic reviews to how to detect and generate opinion spam or fake reviews~\cite{jindal2008opinion,yoo2008motivates,baginski2014exploring}. Most of this work examines reviews and review classification systems from a single time-point; however, this perspective is an incomplete one---these classification decisions are not static.
+
+%The overwhelming majority of prior work has focused on analysis of reviews from a single snapshot in time. Using this approach, prior work has tried to detect fake reviews, explored demographic effects on reviews, studied the incentive structures behind reviews, and more. Some prior work has focused on identifying parameters that predict an existing platform's problematic review classifier, allowing some reverse engineering of existing classifier~\cite{mukherjee2013yelp}, but the question remains as to how accurate, effective, and stable this classifier is. We believe this is a crucial gap in the literature, and that more deeply understanding the existing review filters can help us understand their impact, the challenges faced in design and implementation, and help all platforms improve their classifiers.
+
+\textbf{Contributions.} In this work, we move from a view of reviews at rest to a view of reviews in motion: how do reviews move between classes? We explore the dynamic classification of reviews through the collection and analysis of three novel, longitudinal datasets, focused on Yelp. We sought to observe the changing nature of review classification, and thus we collected datasets in which we observed the reviews for a fixed set of businesses across multiple time-points. Our datasets total over 12.5 million total and two million unique reviews, with observations over timescales ranging from four months to eight years. The longitudinal aspect of data allows us to observe the movement of reviews between classifications, which we call ``reclassification''. We take advantage of our dataset to study other aspects of online reviews: our carefully chosen cross sections allow us to approach questions of demographic interactions with reviews, and our timing allows us to explore questions around COVID-19's impact on reviews.
+
+Our results demonstrate that reviews are routinely reclassified, in between both the ``Recommended'' and ``Not Recommended'' classes, occasionally multiple times. Understanding these reclassifications helps to highlight the uncertainty in Yelp's classifier---whether that's because of insufficient information or imperfect models---and the challenging nature of building robust classifiers. They also act as a potential point of frustration or even chilling for legitimate users and businesses.
+
+Our contributions are as follows:
+\begin{enumerate}
+    \item The largest longitudinal dataset of reviews, tracing over 2M reviews across over 11k businesses.
+    \item The first study of review reclassification and exploration of the phenomena. We find reclassification rates between 0.54\% over four months to 8.69\% over 8 years. Furthermore,  newer reviews are more affected, and that classification appears to happen mostly at an author-level.
+    \item An exploration into the impacts of income and density, showing disparities in review frequency and reclassification by both income and density.
+    \item An investigation  the impacts of mask discussion and rules, showing that the classifier largely erases rating differences for businesses requiring masks.
+\end{enumerate}% \raNote{make sure to fact check these claims}
+
+

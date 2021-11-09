@@ -1,0 +1,29 @@
+\section{Related work} \label{sec:related_work}
+
+Extensive academic literature from multiple disciplines studies online reviews and fake reviews. We highlight four primary areas of prior work: longitudinal study of reviews, demographics and reviews, problematic reviews, and incentives for reviewing.
+
+\textit{Longitudinal study.} Some researchers have performed longitudinal analyses on reviews with a single snapshot, for example by using review dates~\cite{bakhshi2014demographics,ye2016temporal,wang2017temporal}.  Other studies have linked datasets together to gain a better vantage on the review landscape, but still rely on a single snapshot for each data point. For example, \citet{nilizadeh2019think} used reviews from multiple different review platforms along with change point analysis to find fraudlent reviews. To the best of our knowledge, no other studies focus on review reclassification. Yelp acknowledges that reviews are classified by an automated system and sometimes reclassified, but Yelp does not disclose the frequency with which this happens \cite{yelpwhyrec,yelpwhychange}.
+
+\textit{Demographics and reviews.} Ensuring equal access to and treatment by technology is an important equity issue. Two areas of concern are the rural/urban divide and income inequality. \citet{baginski2014exploring} explored the hypothesis that, within Franklin County, OH, low income areas have fewer reviews. Instead, they found that there were strong concentrations of reviews, and suggested that technological adoption may play a role. Van Velthoven et al.~\cite{van2018cross} support this hypothesis in their work exploring reviews and ratings in a medical setting; they also do not find a strong link between income or urban/suburban living and the frequency of review authorship. In contrast, \citet{bakhshi2014demographics} find that, among restaurant reviews, local population density has a small but statistically significant effect on review count, but not on rating.  However, \citet{sutherland2020topic} show, using topic modelling, that in hotel ratings rural and metropolitan settings and decor are important discussion points for consumers. Our work helps improve the perspective on how demographics shape reviews.
+
+\textit{Problematic reviews.} Problematic reviews have served as a persistent challenge in the review landscape, largely in the context of detecting fake reviews. \citet{ott2012estimating} estimated that fake reviews occurred at a rate of 2-6\% across six platforms, but other estimates of fake reviews reach 50\%-70\%~\cite{dwoskin2018merchants,elliott2018trust}. Yelp reports filtering about one quarter of its reviews~\cite{yelp2010recommend}. A wealth of research focuses on the problem of detecting these fake reviews~\cite{jindal2008opinion,martens2019towards,ye2016temporal,shehnepoor2017netspam,kumar2018rev2,harris2012detecting,mukherjee2013yelp}. Some works have taken an adversarial approach, generating fake reviews rather than detecting~\cite{adelani2020generating,juuti2018stay,yao2017automated}.
+
+One challenge in analyzing fake reviews is the absence of ground-truth data. Fake reviews may be designed to fool even humans~\cite{ott2011finding}, and only the author of a review may know its authenticity with certainty. \citet{wang2016real} obtained ground-truth data by using leaked data from fake reviewers. \citet{martens2019towards} posed as customers to fake review providers to identify other fake reviews. \citet{ott2011finding} had study participants create fake reviews. Other studies rely on suspected---but unconfirmed---fake reviews. ~\citet{jindal2008opinion} used ``obviously'' fake reviews (e.g., duplicates) on Amazon to train a model to find other fake reviews. \citet{mukherjee2013yelp} and \citet{rayana2015collective} rely on Yelp's classifications for analysis.% By studying how output of the classifier, we sidestep the need to know definitively whether individual reviews are fake or otherwise problematic.
+
+In contrast to most of these works, our work studies Yelp's deployed classifier which is designed to filter out such reviews, particularly focusing on the dynamic nature of decisions made.% \raNote{polish language}
+
+\textit{Incentives.} A number of economics studies have tried to understand the incentives behind both posting reviews and restaurants reviews. \citet{yoo2008motivates} showed that most consumers post reviews for themselves, to help the company, and to protect other consumers, while a smaller portion do so as retribution for poor service. \citet{luca2016fake} studied the economic incentives for problematic review posts, concluding that chain restaurants, restaurants with stable ratings, and restaurants with not much competition are less likely to post fake reviews. This literature is crucial for interpretation of the results of our study.
+
+%\raNote{Mention longitudinal}
+
+%\cite{baginski2014exploring} -- study of franklin county, oh reviews, rejected hypothesis that low income areas have fewer reviews, but they still find that reviews are concentrated in specific areas
+
+
+
+%\cite{sutherland2020topic} -- rural/urban settings are important features in hotel review discussions, therefore likely have an impact on business success and choices
+
+%\cite{van2018cross} -- studied a number of factors wrt medical review reading and writing. found that income and urban/suburban are not strongly correlated with medical review authorship; internet use was the only factor they found
+
+%\cite{nilizadeh2019think} -- linked reviews from different sites and used change point analysis to find fraudulent reviews
+
+%\cite{luca2016fake} -- studieid the economic incentives of reviews on yelp. certain types of restauraunts, specifically chains, are less likely to commit review fraud. more competition leads to increases in RF

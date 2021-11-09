@@ -1,0 +1,58 @@
+\subsection{Extracting Terms of Interest}
+\label{sec:sec:analysis}
+In order to identify terms of interest, we built a pipeline to further clean and process the data. We start by replacing certain patterns in the policies with placeholders. We then split the policies into ``terms'' -- n-grams, sentences, and patterns. We count the number of occurrences of each term. Finally, we use a variety of scoring functions to identify terms of interest.
+
+\subsubsection{Cleaning}
+We expect that certain patterns are likely to change from policy to policy, even though they have the same semantic meaning. One example is the term ``please contact us at'' followed by an email address. In order to account for this, we replace email addresses, URLs, and numbers with placeholder words. We also use named entity recognition to identify and replace names of companies. We separately save named entities, emails, and URLs and treat them as a category of terms later in our processing. We restricted the policy set to only those policies between Jan, 2009 and December, 2019, because this is the period for which we have the highest quality data. With two intervals per year, this gives us 22 intervals of data.
+
+After cleaning the data, we impute missing data in the following way. We identify any interval, website combinations for which we do not have a policy, and we do have a policy for the same website for both an earlier interval and a later interval. We then impute the policy as the policy for the website in newest interval before the interval of the missing policy. Any interval, website combinations which do not have an earlier policy are assumed to not exist yet, and are left missing. Any interval, website combinations which do not have a later policy are assumed to be removed websites, and are also left missing. 
+
+
+\rnote{Truste to trustarc}
+
+\subsubsection{Near Duplicate Detection}
+In order to remove duplicate policies, we find similar documents. We do this using Simhash\cite{henzinger2006finding}\cite{SimhashPy} with a fingerprint of 64 bits and a maximum of 3 matching bits to define a match, as recommended by Manku \textit{et al.}\cite{manku2007detecting}, with shingles of size 4. We search for near duplicates on the cleaned policies, and we only search within an interval.
+
+We did not use any second metric to identify duplicates. We found that Normalized Compression Distance lead to inaccuracies with small policies. We found that using Levenstein distance did not rule out a sufficient number of non-duplicate policies---with a Levenstein ratio cutoff of 0.98, we ruled out approximately 1.2\% of policies identified as near-duplicates.
+
+\rnote{BFS}
+
+
+\rnote{Explain that two websites that point to the same policy URL are treated as separate policies but will be in the same family}
+
+\subsubsection{Term counting}\label{sec:termcounting}
+We first break each document down into  terms -- n-grams and sentences. In terms of n-grams, we specifically examined 1-grams, 5-grams, 6-grams, 7-grams, and 8-grams. Because we are interested in the adoption of terms by many parties, we count the document frequency of the term. We use three different counting methods. The first count is the total number of websites with a policy that uses that term. The second is the total number of \textit{unqiue} policies that use that term. The third is the total number of websites with a policy that uses the term, weighted by estimation of traffic share. We model traffic share of a website with the Zipf distribution, with a characteristic of $s=1.099$\cite{garcia2008duration}, ranked by Alexa ranking.
+
+Missing policies that have not been imputed do not contribute any terms.
+
+\subsubsection{Term extraction}
+We reduce the set of terms that could be of interest by finding terms that ever occur in at least 30 policies in a single interval. This restriction reduces memory overhead, as the n-gram count data exceeds several hundred gigabytes.
+
+Within each of the three counting methods mentioned in section \ref{sec:termcounting}, and within each term type, we assemble the sequence of term count for each interval. We score each term by the following metrics:
+\begin{enumerate}
+    \item \textbf{Variance} -- the variance of term count
+    \item \textbf{Difference} -- The absolute value of the difference the count at the start interval and end interval
+    \item \textbf{Gain} -- The difference between the count at the highest interval and the lowest interval
+    \item \textbf{Loss} -- As in \textbf{Gain}, but negated
+    \item \textbf{Sum} -- The sum of the counts in all intervals
+    \item \textbf{Local Positive Growth} -- For two points with heights $A$, $B$, separated by $w$ intervals, the \textbf{Local Positive Growth} is $\frac{A-B}{A}$. We vary $w$ from $1$ to $5$.
+    \item \textbf{Local Negative Growth} -- As in \textbf{Local Positive Growth}, but we compute $\frac{B-A}{B}$.
+    \item \textbf{Spike} -- For any local maximum with value $B$, with local minima $A,C$ to the left and right, we score the prominence as $B-max(A,C)$, as implemented in SciPy\cite{2020SciPy-NMeth}. The \textbf{Spike} score is the maximum prominence over all local maxima.
+\end{enumerate}
+For each scoring metric, we record the top 50 terms for plotting.
+
+\subsubsection{Plotting}
+For all terms marked for plotting, we plotted a bar graph showing usage over time; a line graph showing usage over time alongside other terms; and a heatmap showing which websites adopted the term at which intervals.
+
+We also generate a scoring table for each counting method, term type, and scoring metric combination. The table contains the top 50 terms, their scores, and their count for each interval. We use a simple tool built on \verb|grep| to search these tables for terms of interest.
+
+
+% Steps:
+% \begin{enumerate}
+%     \item Clean (remove named entities with NER, remove URLs, emails, numbers with regex, impute missing)
+%     \item Near-duplicate detection (simhash, cutoff 3. Tests showed Levenstein distance caused minimal changes to data set) \cite{manku2007detecting}
+%     \item Count (for every term type i.e. n-grams, words, sentences, named entities, etc. count occurrences of each term, for 3 definitions of ``count'')
+%     \item Accumulate (select terms to track, and track those term across time. Then compute statistics to decide which are best.)
+%     \item Compare "key" terms between popular and non-popular websites, policies published pre and post GDPR
+%     \item Plot (heatmap, line graph)
+% \end{enumerate}

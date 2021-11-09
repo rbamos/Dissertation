@@ -1,0 +1,35 @@
+\subsection{Evaluating data quality}
+\label{subsec:failure-analysis}
+
+To ensure our dataset was of high quality, we manually investigated causes of failure (i.e., homepages where the crawler did not extract privacy policy text). We started with 5,223,228 homepage snapshots, and our crawler was able to download 1,292,420 privacy policy snapshots (24\%).
+Downloads of privacy policies corresponding to the other 3,930,808 homepage snapshots failed due to various causes which we list in Table~\ref{tab:failure-cause}. While the high frequency of absent policies may be counter-intuitive, we found that only about 2\% of missing policies were attributable to crawler limitations.
+
+The most common cause for a missing privacy policy, by far, was the crawler loading an archived homepage but failing to identify a privacy policy link.
+The next most common cause was a~\emph{blank homepage}, where the crawler could not extract any text. Another recurring issue was that, though we had attempted to filter our non-English sites before the crawl, some homepage snapshots were classified as non-English.
+
+To investigate the root causes of crawler failures, we manually analyzed 100 random snapshots for each of the most common crawl failures.
+The main takeaways are:
+only 4 of 100 homepages where the crawler did not identify a privacy policy link actually had a privacy policy link. Only 3 of 100 homepages detected as \emph{blank} contained a privacy policy link, while 13 contained some text in a separate frame--- typically old webpages. We further explore the relation between the snapshot age and crawl success in 
+Section~\ref{subsec:data-overview}.
+
+In sum, the overwhelming majority of crawl failures were attributable to homepage snapshots that did not contain a policy link, were not archived by the Wayback Machine (e.g., due to \texttt{robots.txt} rules), or were in a language other than English. The missing privacy policies that are attributable to limitations of the crawler are about 2\% of all snapshots (4\% of 44.7\% + 3\% of 7.3\%).
+
+
+\begin{table}[]
+\centering
+\resizebox{0.9\columnwidth}{!}{%
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Failure cause}                           & \textbf{Count} & \textbf{Percent} \\ \midrule
+No privacy policy link found on homepage         & 2,336,849      & 44.7\%       \\
+Homepage detected as blank                        & 383,337       & 7.3\%      \\
+Non-English homepage                             & 310,563        & 5.9\% \\
+Policy page is not archived in this interval     & 271,736        & 5.2\%\\
+Out-of-interval redirection for homepage         & 158,727        & 3.0\%\\
+\bottomrule
+\end{tabular}%
+}
+\caption{The five most common causes for the crawler to not download a privacy policy for a homepage. Out-of-interval redirection (row 5) means our crawler was redirected by the Wayback Machine to a snapshot in a different interval.}
+\label{tab:failure-cause}
+\end{table}
+
