@@ -46,10 +46,14 @@
 \newtheorem{corollary}{Corollary}
 \newtheorem{claim}{Claim}
 
+% Bibliography
+\usepackage{natbib}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
 %%%% Author & title page info
 
-\title{Consumer protection with longitudinal data collection and analysis}
+\title{Consumer protection on the Web with longitudinal data collection and analysis}
 
 \submitted{April 2022}  % degree conferral date (January, April, June, September, or November)
 \copyrightyear{2022}  % year in which the copyright is secured by publication of the dissertation.
@@ -194,6 +198,10 @@
 
   }
   {\end{list}}
+  
+  
+%Note command
+\newcommand{\raNote}[1]{{\color{blue}[{{#1}}]}}
 
 
 
@@ -222,20 +230,10 @@
 \input{acknowledgements}
 }
 
-\dedication{To Mom and Dad}
+\dedication{To ...}
 
 \fi  % disable frontmatter
 
-\newcommand{\mytab}{% Just for this example
-  \begin{tabular}{lcr}
-    \toprule
-    One & Two & Three \\
-    \midrule
-    $x$ & $y$ & $z$ \\
-    1 & 2 & 3 \\
-    \bottomrule
-  \end{tabular}
-}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
@@ -267,16 +265,14 @@
 %\tableofcontents\clearpage
 
 % \include lets us split up the document (and each include starts a new page):
-% \include{ch-intro/chapter-intro}
-% \include{ch-reconciliation/chapter-reconciliation}
-% \include{ch-recCost/chapter-recCost}
-% \include{ch-tdr/chapter-tdr}
-% \include{ch-zfGroups/chapter-zfGroups}
-%\include{ch-conclusion/chapter-conclusion}
+\include{chapters/introduction/main}
+\include{chapters/introduction/background}
+\include{chapters/privacypolicies/main}
+\include{chapters/reviews/main}
 
 % Make the bibliography single spaced
 \singlespacing
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 
 % add the Bibliography to the Table of Contents
 \cleardoublepage
@@ -291,8 +287,8 @@
 
 \appendix % all chapters following will be labeled as appendices
 \doublespacing
-\include{ch-appendicies/simulation}
-\include{ch-appendicies/external}
+% \include{ch-appendicies/simulation}
+% \include{ch-appendicies/external}
 %\include{ch-appendicies/suppl-figs-jointInference}
 %\include{ch-appendicies/suppl-figs-ifaceMapping}
 

@@ -5,9 +5,9 @@ In this section, we explain how we addressed these challenges. We discuss how we
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.99\textwidth]{figures/data-collection-pipeline.pdf}
+\includegraphics[width=0.99\textwidth]{chapters/privacypolicies/figures/data-collection-pipeline.pdf}
 \caption{Overview of the data collection steps.}
-\Description[Data Collection Pipeline]{A flow diagram for our data collection pipeline. First we collect 541K websites from Alexa. Then we collect 9.6M homepage snapshots from 523K of those websites. We reduce this to 5.2M English homepage snapshots from 280K websites. We find 1.7M documents with privacy policy links from 178K websites. We find 1.3M privacy policy webpages from 148K websites. We extract text from 1.3M of those. Then we filter, leaving us with 1,071,488 policies from 131K websites.}
+%\Description[Data Collection Pipeline]{A flow diagram for our data collection pipeline. First we collect 541K websites from Alexa. Then we collect 9.6M homepage snapshots from 523K of those websites. We reduce this to 5.2M English homepage snapshots from 280K websites. We find 1.7M documents with privacy policy links from 178K websites. We find 1.3M privacy policy webpages from 148K websites. We extract text from 1.3M of those. Then we filter, leaving us with 1,071,488 policies from 131K websites.}
 \label{fig:data-collection}
 \end{figure*}
 
@@ -78,4 +78,4 @@ To reduce our bandwidth footprint, we disabled image downloads and limited the n
 We slowed down our crawls by pausing the workers when they received HTTP 429 (``Too Many Requests'') or HTTP 503 (``Service Unavailable'') errors from the Wayback Machine. 
 After starting the crawl, we monitored the Wayback Machine server load stats~\cite{Wayback-Stats} to ensure that we were not imposing a significant load.
 
-\input{sections/failure-analysis}
+\input{chapters/privacypolicies/sections/failure-analysis}

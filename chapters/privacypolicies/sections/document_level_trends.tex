@@ -13,9 +13,9 @@ from 2009-2019, we focus most of our analysis on that time range.
 \subsection{Comprehension}
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.99\columnwidth]{figures/word-count-by-rank.pdf}
+\includegraphics[width=0.99\columnwidth]{chapters/privacypolicies/figures/word-count-by-rank.pdf}
 \caption{The median word count of policies binned by Alexa rank. The highlighted region in this and the following figures shows the 95\% confidence interval. Ranks are at the time of the snapshot.}
-\Description[Line plot of year vs word count]{The trend is generally slightly upwards and a similar shape across bins. Bins closer to 1 have more words.}
+%\Description[Line plot of year vs word count]{The trend is generally slightly upwards and a similar shape across bins. Bins closer to 1 have more words.}
 \label{fig:wordcount}
 \end{figure}
 
@@ -33,10 +33,10 @@ Several studies have shown that privacy policies are difficult to read~\cite{mcd
 Here we examine how readability has changed over time.
 \begin{figure}
 \centering
-\includegraphics[width=1\columnwidth]{figures/flesch_kincaid_dist.pdf}
+\includegraphics[width=1\columnwidth]{chapters/privacypolicies/figures/flesch_kincaid_dist.pdf}
 \caption{Median Flesch-Kincaid grade level from 2009 to 2019, binned by Alexa rank. 
 }
-\Description[Line plot of year vs Flesch Kincaid Grade level]{The trend is generally flat. Bins closer to 1 have a higher reading level.}
+%\Description[Line plot of year vs Flesch Kincaid Grade level]{The trend is generally flat. Bins closer to 1 have a higher reading level.}
 \label{fig:readability}
 \end{figure}
 We measured readability with the Flesch-Kincaid grade level (FKGL)~\cite{kincaid1975derivation}
@@ -59,10 +59,10 @@ To determine if these changes align with shifts in the language of privacy polic
 \label{sec:policy-updates}
 \begin{figure}[]
 \centering
-\includegraphics[width=0.99\columnwidth]{figures/policy-updates.pdf}
+\includegraphics[width=0.99\columnwidth]{chapters/privacypolicies/figures/policy-updates.pdf}
 \caption[Caption]{Percentage of privacy policies updated per interval.\protect\footnotemark}
 
-\Description[Line plot of year vs percentage of policies updated]{While jagged, the trends are relatively stable. Bins closer to 1 have more updated policies. There is a large spike shortly before GDPR is implemented.}
+%\Description[Line plot of year vs percentage of policies updated]{While jagged, the trends are relatively stable. Bins closer to 1 have more updated policies. There is a large spike shortly before GDPR is implemented.}
 
 \label{fig:pct-policy-update}
 \end{figure}
@@ -88,9 +88,9 @@ Figure~\ref{fig:changepoints} shows that the change points for n-grams concentra
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.45\textwidth]{figures/changepoints.pdf}
+    \includegraphics[width=.9\textwidth]{chapters/privacypolicies/figures/changepoints.pdf}
     \caption{Change point concentration. The y value is the number of frequent n-grams with change points in that interval for 1-grams, 3-grams, and 8-grams.}
     
-    \Description[Line plot of year vs number of changes]{There is a roughly arc shaped trend, with 3-grams being the most pronounced. There is a sharp spike right before GDPR is implemented.}
+%    \Description[Line plot of year vs number of changes]{There is a roughly arc shaped trend, with 3-grams being the most pronounced. There is a sharp spike right before GDPR is implemented.}
     \label{fig:changepoints}
 \end{figure}
