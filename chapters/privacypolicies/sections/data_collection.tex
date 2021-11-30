@@ -1,5 +1,5 @@
 \section{Collecting historical privacy policies}
-\label{sec:methods}
+\label{sec:ppot:methods}
 Privacy policies are intended for human readers, and automating the process of locating the policies and extracting their text is challenging. A further complication is the historical dimension: our goal is to extract privacy policies of websites that may not exist today.
 In this section, we explain how we addressed these challenges. We discuss how we selected our target set, ethically crawled policies, and ensured a high level of quality.
 
@@ -12,7 +12,7 @@ In this section, we explain how we addressed these challenges. We discuss how we
 \end{figure*}
 
 \subsection{Building the list of target websites}
-\label{sec:sec:building-website-list}
+\label{subsec:ppot:building-website-list}
 We began by identifying a set of websites to include in our data collection process.
 We chose websites that appeared in the Alexa top 100K list between 2009 and 2019. We considered 100K websites to be sufficient to reach into the long tail of the web, yet not so numerous as to pose computational challenges for data collection or analysis.
 
@@ -22,7 +22,7 @@ We collected the Alexa ranks for each interval from the beginning of Alexa’s p
 We obtained 541,616 websites by combining all domains that appear in the top 100K of these 22 Alexa lists (two lists per year for 11 years).
 
 \subsection{Building the list of snapshots}
-\label{sec:sec:snapshot-retrieval}
+\label{subsec:ppot:snapshot-retrieval}
 Next, we determined the list of homepage snapshots available on the Wayback Machine
 by querying their \emph{CDX Server API}~\cite{wayback-cdx-api}.
 When a website had multiple snapshots in a six-month interval, we picked the snapshot closest to the midpoint of the interval.
@@ -31,7 +31,7 @@ For instance, if {\tt example.com} was only listed in the Alexa top 100K in 2019
 we included its snapshots from any other year including as early as 1996, the first year for which Internet Archive has crawls~\cite{WaybackMachineGeneralInformation}.
 
 \subsection{Downloading privacy policies}
-\label{sec:sec:download-policies}
+\label{subsec:ppot:download-policies}
 To download archived privacy policies, we built a custom crawler based on 
 \emph{Pyppeteer}~\cite{miyakogi2019May}.
 
@@ -56,7 +56,7 @@ We compiled these terms based on prior research~\cite{libert2018automated} and a
 The manual analysis of these pages involved searching for privacy policy links and checking whether the linked page’s title, headers and content described a privacy policy or not. 
 
 The link detection method is designed to be comprehensive and may lead to pages that do not contain actual privacy policies.
-We detected and removed these false positives after the crawl (Section~\ref{sec:classifier}).
+We detected and removed these false positives after the crawl (Section~\ref{sec:ppot:classifier}).
 
 {\textbf{Policy download.}}
 For each detected privacy policy link, we queried the Wayback Machine CDX API to retrieve the list of snapshots that were in the same time interval as the homepage snapshot. 
@@ -69,7 +69,7 @@ We removed boilerplate and extracted the main article from the page's DOM using 
 Next, we extracted Markdown formatted text from the \emph{readable} policy web page using the \emph{html2text} Python library~\cite{html2text-github}. Markdown formatting allowed us to retain the links and basic document structure such as headers and lists, with minimal markup overhead.
 
 \subsection{Practical and ethical considerations}
-\label{subsec:practical-matters}
+\label{subsec:ppot:practical-matters}
 We confirmed that the Internet Archive’s terms of use do not prohibit automated access. Prior to starting our crawls, we sent an email to the IA’s contact address to notify them of our study.
 We note that several prior works used Wayback Machine~\cite{lerner2016internet, lerner2017rewriting,brunelle2015not,brunelle2016impact}.
 

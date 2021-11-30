@@ -1,11 +1,11 @@
 \section{Term-level trends}
-\label{sec:analysis}
+\label{sec:ppot:analysis}
 
 Motivated by our analysis of updates and change-points, we sought to understand how the language of privacy policies has shifted. While we followed prior research in our use of manually crafted keywords to analyze trends~\cite{degeling2018we},
 we additionally developed a system to surface key terms that experts might otherwise overlook. Then we used the key terms surfaced by our tool to guide a more comprehensive analysis into specific concepts.
 
 \subsection{Automated trend surfacing}
-\label{sec:automated-trends}
+\label{sec:ppot:automated-trends}
 
 We first built a pipeline to further clean and process the privacy policy texts. We started by replacing certain patterns---URLs, named entities using Spacy~\cite{spacy}, numbers, and emails---in the policies with placeholders. This allowed us to group together phrases that share the same template but include, for example, an organization name. We then extracted terms---n-grams, sentences, named entities, and URLs---for which we obtained the relative document frequency (the percentage of policies they appear in in an interval). Finally, we ranked terms of interest using a variety of scoring functions such as overall gain in relative frequency. 
 
@@ -34,11 +34,11 @@ The results from the tool are actionable alone, but they can spark further inves
 \end{comment}
 
 \textbf{Results.} Our trend surfacing tool returned hundreds of phrases which we manually inspected. 
-We provide some examples of top-scoring trends that our tool identified in Table \ref{tbl:automated_results}. Under 2-grams measured by gain, we note the growth of terms such as ``may include'' and ``may collect,'' which are terms of ambiguity in privacy policies (previously studied by Reidenberg et al.~\cite{reidenberg2016ambiguity}). This result suggests that privacy policies may be becoming more ambiguous over time, which should be investigated in future work. We noticed growth in terms related to European privacy regulation (GDPR, EU, EEA), along with Google Analytics and Facebook, two commonly used third-party services. We investigate this trend and other trends we observed in more depth in Section~\ref{subsec:trends}. Furthermore, we note growth in terms that likely relate to GDPR.
+We provide some examples of top-scoring trends that our tool identified in Table \ref{tbl:automated_results}. Under 2-grams measured by gain, we note the growth of terms such as ``may include'' and ``may collect,'' which are terms of ambiguity in privacy policies (previously studied by Reidenberg et al.~\cite{reidenberg2016ambiguity}). This result suggests that privacy policies may be becoming more ambiguous over time, which should be investigated in future work. We noticed growth in terms related to European privacy regulation (GDPR, EU, EEA), along with Google Analytics and Facebook, two commonly used third-party services. We investigate this trend and other trends we observed in more depth in Section~\ref{subsec:ppot:trends}. Furthermore, we note growth in terms that likely relate to GDPR.
 
 
 \subsection{Trends}
-\label{subsec:trends}
+\label{subsec:ppot:trends}
 
 After examining the results of our automated trend surfacing tool, we chose to investigate trends in three categories: self-regulatory bodies, tracking technologies, and third parties. We investigated tracking technologies because our tool identified several dozen terms of interest related to cookies and web beacons. Similarly, we included third parties as a category because our tool identified terms including Google, Facebook, Instagram, and Twitter. Furthermore, adequate disclosure in each of these categories is crucial to demonstrate the transparency that is a premise of \textit{notice and choice}. Finally, we chose to investigate self-regulatory initiatives because our tool identified several terms containing TrustArc, NAI, and DAA as gaining traction, which may be of interest to regulators.
 

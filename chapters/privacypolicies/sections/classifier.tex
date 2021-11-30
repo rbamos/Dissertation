@@ -1,10 +1,10 @@
 \section{Filtering the corpus}
-\label{sec:classifier}
+\label{sec:ppot:classifier}
 
-As discussed in Section \ref{sec:sec:download-policies}, we expect that some of the downloaded pages are not privacy policies. In order to filter out web pages that are not privacy policies, we trained a classifier on manually labeled data from the candidate policies. In this section, we refer to the text of the crawled web pages extracted with \emph{html2text} as \textit{documents}.
+As discussed in Section \ref{subsec:ppot:download-policies}, we expect that some of the downloaded pages are not privacy policies. In order to filter out web pages that are not privacy policies, we trained a classifier on manually labeled data from the candidate policies. In this section, we refer to the text of the crawled web pages extracted with \emph{html2text} as \textit{documents}.
 
 \textbf{Labeling definition.}
-\label{sec:sec:pp-definition}
+\label{subsec:ppot:pp-definition}
 In order to label documents as privacy policies (or not), we needed to adopt a definition of what constitutes a privacy policy. We did not select a definition based on legal requirements, since both privacy policy text and applicable law can be ambiguous; we considered it outside the scope of the project to develop a classifier that accurately determines whether a document satisfies relevant legal requirements. Moreover, different jurisdictions have different legal requirements, which would necessitate further judgment about the applicable law for a given website.
 
 Instead, we aimed to label whether a document is an \textit{apparent} privacy policy, without determining whether the document meets any particular legal requirements. Specifically, we labeled a document as a privacy policy if it met all of the following criteria:
@@ -29,7 +29,7 @@ In the course of applying our criteria, we encountered several recurring borderl
 \end{itemize}
 
 \textbf{Labeling the sample.} We started by manually labeling a sample of candidate privacy policies (i.e., documents returned by the crawler) using our criteria. First, we randomly sampled and labeled 1,139 documents. In the sample, the majority of the documents 
-matched the ``privacy + policy'' link text pattern (as described in Section \ref{sec:sec:download-policies}). We additionally sampled 50 random documents for each of the six remaining link text patterns so as to reduce overrepresentation of the 
+matched the ``privacy + policy'' link text pattern (as described in Section \ref{subsec:ppot:download-policies}). We additionally sampled 50 random documents for each of the six remaining link text patterns so as to reduce overrepresentation of the 
 dominant
 link text pattern.
 
@@ -60,5 +60,5 @@ We then considered the tradeoff between precision and recall for the random fore
 Finally, we evaluated our model on a held-out set of 749 randomly sampled and manually labeled documents, consisting of 651 positives and 98 negatives. The performance of the final model on the held-out set is shown in Figure \ref{fig:roc-auc}. The chosen classification threshold resulted in 97.9\% precision and 94.2\% recall.
 
 \textbf{Document Classification.}
-Approximately 17\% (220,932) of the documents in the dataset were classified as negatives, with the final dataset totaling 1,071,488 policies. We discuss the release of this data in Section \ref{sec:conclusion}.
+Approximately 17\% (220,932) of the documents in the dataset were classified as negatives, with the final dataset totaling 1,071,488 policies. We discuss the release of this data in Section \ref{sec:ppot:conclusion}.
 

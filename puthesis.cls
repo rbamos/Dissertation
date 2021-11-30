@@ -103,7 +103,7 @@
   \thispagestyle{empty}
   \vspace*{0in}
   \begin{center}
-    \copyright\ Copyright by \@author, \@copyrightyear.  All rights reserved.
+    \copyright\ Copyright ... to be changed to CC-BY-SA by \@author, \@copyrightyear.  All rights reserved.
   \end{center}
   \clearpage}
 \newcommand*{\makeabstract}{
