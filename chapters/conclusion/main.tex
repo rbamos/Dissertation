@@ -1,0 +1,34 @@
+\chapter{Conclusion} \label{ch:conclusion}
+In this dissertation, we have demonstrated the importance of longitudinal data collection and analysis when studying consumer protection on the web. We've shown how both privacy policies and online reviews are subject to ongoing change. Our contributions would be infeasible in the absence of longitudinal collection of data. We also emphasize the difference between longitudinal data collection and longitudinal analysis -- for example, in our study of reviews, we could explore reviews based on age with a single collection, but our analysis would have never included reclassification.
+
+We showed in Chapter \ref{ch:background} that most prior work using web crawls collects data a single-pass. Our work emphasizes the value in performing web crawls over multiple passes. This approach allows researchers to understand the flux in the state of phenomena being studied. Single point in time web crawls make it challenging to know the stability or certainty of the observed phenomena, and without perfectly matching the target set of prior work, such static views make it difficult to accurate gauge trends in the web.
+
+\section{Impact}
+We are hopeful that our emphasis on longitudinal collection will inspire other researchers to engage similarly with their subjects of interest. This will help ensure the stability, reproducibility, and accuracy of their findings. Furthermore, inconsistencies may uncover new phenomena of interest.
+
+In releasing the largest longitudinal dataset of privacy policies, our longitudinal dataset of privacy policies has received \raNote{X} requests from research teams in industry, academia, and non-profits around the world. Likewise, in publishing the largest longitudinal dataset of reviews, we are hopeful that our reviews dataset will have a similar impact on the academic community.
+
+\section{Future work} \label{sec:conclusion:futurework}
+Our work in privacy policies and online reviews lead to questions that arise from our results. Furthermore, our overarching argument leads to further research questions about how it can be applied to other areas of consumer protection. Longitudinal data collection is a missing but critical step forward in understanding many consumer protection issues. In this section, we outline potential areas of future work.
+
+\subsection{Privacy policies} \label{subsec:conclusion:privacypolicies}
+Based on our findings from our study of privacy policies we suggest several directions for future work in this area. The reporting gap for third parties and tracking technologies could be investigated with a combination of web measurements and privacy policy analysis. Another direction is to further investigate ambiguity in privacy policies.
+
+More sophisticated natural language processing techniques applied to longitudinal privacy policy data could improve our understanding of how online services adapt to new privacy regulations, the prevalence of specific business practices, and whether online services are complying with privacy laws. 
+We anticipate that our privacy policies dataset will prove useful for research in all of these directions.
+
+\subsection{Online reviews} \label{subsec:conclusion:reviews}
+From our work on Yelp reviews, an immediate question that arises is whether the trends we observe hold true on other platforms. In particular, how do these trends translate to platforms with different monetization structures? Platforms like Amazon benefit more directly from sales by the businesses whose reviews they host---will this affect how they approach review classification? Less transparent platforms would likely require more intensive study, for example over longer time periods to observe more review movement. It may be possible to directly study the classifer by injecting researcher generated reviews, but care would need to be taken when navigating the ethical concerns. %Perhaps the best approach would be a direct collaboration.
+
+Further investigation into the income and density disparities could be impactful for both platforms and regulators seeking to ensure equity and protect consumers who rely on reviews. It is possible that these issues are caused by forces outside of the control of the platform---for example, rural areas have less access to high speed internet \cite{fcc2020broadband}---but it is also possible that there are steps platforms could take to address these issues.
+
+It may be interesting to investigate how reviews and review rates varied pre- and post- COVID-19 vaccine distribution, and our CHI dataset includes data from before the first vaccines were given an emergency use authorization \cite{nature2020moderna}. Mask mentions and business requirements may have an impact on review ratings, so vaccine distribution and business vaccination requirements may have an impact on reviews.
+
+An additional subject of longitudinal study that we did not cover in our study is editing and deletion of reviews and business data. Future work could attempt to answer questions such as: what prompts users to edit or delete reviews? Which accounts are most likely to edit or delete reviews? What changes are made during edits?
+
+\subsection{Other consumer protection issues}\label{subsec:conclusion:other}
+Many studies have surveyed the deployment of trackers across the internet, but how is that changing over time? Are trackers becoming more prevalent? What causes companies to deploy or remove trackers? And which types of trackers and which third parties are becoming more favored? Does the passage of legislation affect trackers in use? And how do trackers adapt to ad blockers?
+
+We can ask similar questions about the deployment of dark patterns. For example, as regulators become more aware of the hazards of dark patterns, are we seeing hesitancy in the deployment of dark patterns? And likewise, with social media endorsements -- do those posting endorsements ever revise their disclosure? And if so, what pressures might lead them to revise their disclosure? Indeed, \citet{mathur2020identifying} specifically calls out the need for longitudinal study of these issues.
+
+We are hopeful that the longitudinal approach we have taken in this dissertation will inspire other researchers to take a similar approach and study these critical questions.

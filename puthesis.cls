@@ -90,7 +90,7 @@
     \@dept \\
    \vspace{.2in}
    \extravspace{.2in}
-    Adviser: \@adviser
+    Advisers: \@adviser
   \end{center}
   \vspace{.15in}
   \extravspace{.15in}
@@ -208,6 +208,9 @@
 %%% try to avoid overfull lines by limiting how far it is okay to exceed the margins
 %%% http://www.tex.ac.uk/cgi-bin/texfaq2html?label=overfull
 \setlength{\emergencystretch}{2em}
+
+%%% Uncomment this to have a full indent. Otherwise the default is half indent
+%\setlength{\parindent}{4em}
 
 \long\def\abstract#1{\gdef\@abstract{#1}}
 %% 'begincmd' no longer used -- insert \makefrontmatter in the document instead. See above. 

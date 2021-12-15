@@ -1,6 +1,6 @@
-\section{Data collection} \label{sec:dataset}
+\section{Data collection} \label{sec:rim:dataset}
 
-We collected and constructed three longitudinal datasets to study reviews on Yelp. We present background on Yelp in Section \ref{subsec:background}, we describe the difference between our three datasets in Section \ref{subsec:target_set}, and we describe our crawling process in Section \ref{subsec:crawling}.
+We collected and constructed three longitudinal datasets to study reviews on Yelp. We present background on Yelp in Section \ref{subsec:rim:background}, we describe the difference between our three datasets in Section \ref{subsec:rim:target_set}, and we describe our crawling process in Section \ref{subsec:rim:crawling}.
 
 
 
@@ -8,7 +8,7 @@ We collected and constructed three longitudinal datasets to study reviews on Yel
  
 % \raNote{If Roland gets an arXiv paper up before the deadline, maybe we can cite that here}
 
-\subsection{Background} \label{subsec:background}
+\subsection{Background} \label{subsec:rim:background}
 
 Yelp breaks reviews into two primary categories, assigned by a software classifer. The categories are ``Recommended'' and ``Not Recommended''. Yelp lists four reasons for classifying a review as ``Not Recommended'': conflicts of interest, solicited reviews, reliability, and usefulness. Not Recommended reviews do not affect metrics and are displayed less prominently than Recommended reviews~\cite{yelpwhyrec,yelprecommendationsoftware,yelpstarrating}. In order to study the classifier, it is important that we collect both Recommended and Not Recommended reviews. Yelp also shows a third class: ``Removed for Violating our Terms of Service'', which we do not use in our analysis. While Yelp has published an official review dataset for academic purposes~\cite{yelpacademicdataset}, this dataset is not up-to-date and does not include Not Recommended reviews.
 
@@ -23,7 +23,7 @@ Furthermore, unlike many other platforms, Yelp allows access to reviews that it 
 
 
 
-\subsection{Target set selection} \label{subsec:target_set}
+\subsection{Target set selection} \label{subsec:rim:target_set}
 Selecting the target set, the set of zipcodes or businesses to study, required careful selection of sample.
 
 
@@ -47,7 +47,7 @@ The strata for the income crawls are: \$0--\$55k, \$55k--\$68k, \$68k--\$82k, \$
 
 Since the union of the income and density data is also a useful dataset as broader sample than the CHI dataset, we present some analyses with individual datasets, ``US Density Stratified (UDS)'' and ``US Income Statified (UIS)'', and some with the combined dataset, ``US Density and Income Stratified (UDIS)''.
 
-\subsection{Crawling}\label{subsec:crawling}
+\subsection{Crawling}\label{subsec:rim:crawling}
 
 
 % \pmNote{awkward to begin a subsection with a forward reference to the appendix. lets push this a bit later in the text}
@@ -131,7 +131,7 @@ However, for authors with at least one reclassified review, the combination of b
     %\raNote{update, including EYG; double check percent reclass}. 
     ``\% Recommended'' is averaged across all time-points. EYG data includes reviews from \citet{mukherjee2013yelp}'s crawl.}
     \label{tab:composition}
-    %\resizebox{\columnwidth}{!}{
+    \resizebox{\columnwidth}{!}{
         \begin{tabular}{lc|c|c|c}
              & EYG & CHI & UDS & UIS \\
     Timespan & 8 years & 11 months & 4 months & 4 months \\
@@ -143,7 +143,7 @@ However, for authors with at least one reclassified review, the combination of b
     \% Reclassified & 8.69\% & 0.87\% & 0.54\% &  0.61\%\\
     \% Recommended & 88.19\% & 88.90\% & 85.69\% & 85.22\% \\
         \end{tabular}
-    %}
+    }
 \end{table*}
 
 \subsection{Availability}

@@ -39,6 +39,7 @@
 %\usepackage{times}
 %\renewcommand*\familydefault{\sfdefault}
 
+
 \newtheorem{definition}{Definition}
 \newtheorem{lemma}{Lemma}
 \newtheorem*{lemma*}{}
@@ -48,12 +49,13 @@
 
 % Bibliography
 \usepackage{natbib}
+\setcitestyle{square,numbers}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
 %%%% Author & title page info
 
-\title{Consumer protection on the Web with longitudinal data collection and analysis}
+\title{Consumer protection on the Web with longitudinal web crawls and analysis}
 
 \submitted{April 2022}  % degree conferral date (January, April, June, September, or November)
 \copyrightyear{2022}  % year in which the copyright is secured by publication of the dissertation.
@@ -266,10 +268,10 @@
 
 % \include lets us split up the document (and each include starts a new page):
 \include{chapters/introduction/main}
-\include{chapters/introduction/background}
+\include{chapters/background/main}
 \include{chapters/privacypolicies/main}
 \include{chapters/reviews/main}
-\include{chapters/conclusion/conclusion}
+\include{chapters/conclusion/main}
 
 % Make the bibliography single spaced
 \singlespacing

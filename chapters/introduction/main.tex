@@ -1,27 +1,88 @@
 \chapter{Introduction} \label{ch:introduction}
 
-The rise of the internet has introduced new challenges in consumer protection. Cheap and efficient data collection has introduced novel privacy risks. Low service costs have lead to novel profit collection methods, including an amazing variety of free services. Global marketplaces have lead to large drops in prices as online platforms reduce market friction and increase competition. The internet has given an opportunity to amplify the voices of many. The intense competition and the power of speech on the internet has created a strong incentive to engage in dishonest, self-serving speech. The very anonymity that protects those voices also protects the voices of those seeking to be dishonest.
+%\raNote{``Thesis'' sentence, which should absolutely go somewhere in here, bolded: When using web crawls to study consumer protection issues, researchers should consider repeated crawls rather than a single, monolithic crawl.}
 
-Consumer protection is an important issue. Many jurisdictions ranging from local to national have passed consumer protection laws. In the United States, the primary national body governing consumer protect is the Federal Trade Commission (FTC), established by the Federal Trade Commission Act of 1914 \raNote{citeme}, and many states have their own entities focused on consumer protection. The FTC has highlighted a number of issues at the intersection of the internet and consumer protection including fair reviews and adequate disclosure of privacy practices.
+The rise of the internet has introduced new challenges in consumer protection. Cheap and efficient data collection has introduced unique avenues for revenue generation, resulting in an amazing variety of free or low cost services at a steep cost to consumer privacy. Global marketplaces have lead to large drops in prices as online platforms reduce market friction and increase competition. When combined with a powerful capacity to amplify speech, the internet has created a strong incentive to dishonestly push narratives and opinions for one's benefit, for example posting by fake reviews. The very anonymity that protects those voices also protects the voices of those seeking to be dishonest. Consumer protection laws are crucial to defend consumers in this challenging space.
 
-Since 1914, advancements in communications technology have introduced novel risks to consumers. 
-- Person-to-person, the Archimedes principle ~\cite{thompson2008archimedes}
-- Postal mail scams ~\cite{uspismailfraud}
-- Phone scamming? ~\cite{ftcphonescams}
-- Television's influence on children's diets ~\cite{morton1985television}
-- The introduction of the internet has lead to a host of new consumer protection issues, ranging from poor privacy protections, new types of fraud, sponsorship disclosures, and 
+\textbf{When collecting web data to study consumer protection issues, researchers should consider repeated and longitudinal data collection rather relying than a single, monolithic crawl.} A common approach for studying consumer protection issues on the internet is to collect data from websites and analyze the data to understand the issues. For small measurements, researchers may choose to perform their data collection by hand; however for datasets numbering in the hundreds of thousands of documents or larger, this approach soon becomes infeasible and researchers turn to web crawlers, automated collection tools. Either of these approaches assumes that the web is a static place; however, as we will show in this work, this is far from true.
 
-There is a rich literature of consumer protection work on the internet, which we explore in greater depth in Chapter \ref{ch:background}.
+\section{Challenges in consumer protection}
 
-Consumer protection work
-- Consumer protection issues on the web
-- Why does consumer protection matter?
-- Quick outline of prior work
-- Common theme: single point in time
-- Our contribution: longitudinal analysis
-- Specific breakdown of the contributions
+\textbf{Consumer protection is a challenge that dates back millennia.}
+Consumer protection issues likely date back to the beginning of commerce, even when face-to-face communication dominated. The story of the discovery of the Archimedes Principle could be interpreted as a consumer protection issue (if a monarch can be considered a consumer): the premise of the story is that the monarch tasked Archimedes with determining whether or not a gold crown was made of pure gold without damaging the crown~\cite{thompson2008archimedes}. This suggests that concern of deception in the marketplace is millennia old.  The standardization of weights and measures in ancient Greece and Rome can be interpreted as consumer protection rules, designed to ensure consumers recieved a fair share~\cite{smither2017roman}. Another example is the \textit{Manusmiriti} dating to around 700BCE in India, which lays out prohibitions on deceptive sales, for example of counterfeit goods or unclean food~\cite{devi2016legal}.
 
-Prior work analyzing changes in corpuses? Prior work analyzing changes in recommender systems?
+\textbf{Emerging technologies present new consumer protection challenges.}
+In the years since, novel technologies, especially communication technologies, have introduced novel consumer protection issues. New technologies open up opportunities for those seeking revenue at the expense of consumer welfare. There are many possible reasons for this, we suggest a few possibilities: consumers aren't familiar with potential pitfalls; new technologies allow for greater scale, amplifying the marginal benefit of the smallest of gains; and that such scale may allow for diminished accountability, as alienating individual consumers has less impact. Ultimately, consumer protection issues come down to a conflict between the financial incentives of the merchant and the welfare of the consumer.
+
+Scams are facilitated through technologies such as the postal system~\cite{uspismailfraud} and the telephone~\cite{ftcphonescams}. Improvements in banking led to the need to protect consumers against predatory or otherwise anti-consumer lending practices~\cite{eaglesham2011warning,doddfrank}. Research has shown that television programs have an influence on children's diets~\cite{morton1985television}. Most recently, the introduction of the internet has lead to a host of new consumer protection issues. Websites offer poor privacy protections while collecting large swaths of data~\cite{estrada2017online}. New types of frauds and scams have emerged~\cite{ftcscamalerts}. Access to large audiences by individuals has lead to challenges with sponsorship disclosures~\cite{ftc2021disclosures}. New methods of interacting with businesses have lead to the phenomenon of dark patterns~\cite{darkpatternsorg}.
+
+\textbf{Consumer protection through legislation.}
+Today, many jurisdictions ranging from local to national have passed consumer protection laws. In the United States, a leading national agency governing consumer protection on the internet is the Federal Trade Commission (FTC), established by the Federal Trade Commission Act of 1914~\cite{ftcact}. Many states have their own laws and entities focused on consumer protection. The FTC has highlighted a number of issues at the intersection of the internet and consumer protection including fair reviews and adequate disclosure of privacy practices~\cite{ftc20approves,ftc21notice,ftc2021disclosures,ftc-privacy-survey1998,ftc-privacy-survey2000,ftc2021canspam,ftc1997principles}.
+
+Consumer protection law is not limited to the US and Europe. For example, Taiwan introduced a consumer protection law in 1994, although powerful industry lobbies and lack of consumer action made early enforcement challenging.~\cite{juang1997taiwan}. Nigeria implemented a federal commission to address consumer protection issues, the Federal Competition and Consumer Protection Commission; however, some academics have expressed skepticism at the decision to merge consumer protection and competition issues~\cite{tavuyanago2020interface}.
+
+Consumer protection issues are occasionally addressed through non-profits. For example, the Better Business Bureau (BBB) is a non-profit that focuses on consumer protection through industry self-regulation. However, many have cast doubt on the effectiveness and fairness of the BBB, suggesting that consumer complaints through the organization are rarely resolved~\cite{fisher1999dissatisfied}, and that the BBB's leadership is largely composed of former employees of those industries which generate large numbers of complaints~\cite{garrett2007debate}.
+
+\subsection{The case for longitudinal study}
+In this work, we argue that some consumer protection issues must be studied from a longitudinal perspective. Consumer protection issues often follow a cat-and-mouse game where consumers, merchants, fraudsters, and regulators take steps to respond to the actions of other actors and advance their goals. To understand these issues, we need to understand the ongoing changes and responses that lead to the current state, and, hopefully, extrapolate to understand the impact of future actions.
+
+We demonstrate how large-scale, longitudinal web data collection through web crawls allow for novel insights into consumer protection issues. As past precedent for longitudinal study, and especially longitudinal collection of data, for consumer protection issues on the web, consider the work of \citet{milne2006longitudinal}, who compared privacy policies in 2001 and 2003, finding that privacy policies were becoming more difficult to read. Other examples include the works of \citet{nathezhtha2019wc} and \citet{trabelsi2019monitoring} who encourage the use of continuous, and therefore longitudinal, web crawls to detect new phishing attacks and data breaches, respectively. 
+
+%\raNote{Some story about why longitudinal study is important. Maybe we can use some privacy policy related work to motivate it?}
+
+% For example, consider the history of payment card transactions. Initially, payment card transactions were handled by providing the merchant with a unique identifier, the payment card number, either through the embossed number on the card or the magnetic strip encoding that number. However, if a malicious actor obtains this number, for example by reading it over the consumer's shoulder, skimming the stripe, or accessing the merchant's database, they are able to submit transactions on behalf of the consumer. To combat this, in 1986, the first EMV chip was introduced, which uses cryptographic algorithms to authorize the transaction without revealing the payment card number from the merchant. The inconvenience of the time to complete the transaction has lead to the spread of contactless payments, including near field communication (NFC). To provide additional privacy, services like Apple Pay have introduced tokenization -- effectively one time cards for each purchase. While one might think that the security risk that magnetic stripes pose would lead to great pressures to eliminate their usage, roll-out has taken a substantial amount of time. This roll-out has primarily been driven by a liability-shift -- changing whether the merchant or payment card provider is liable for fraud. Some parts of the world had this liability shift occur as early as 2005, such as Europe and South Africa, and, in other parts and industries, such as gas pumps in the United States, as late as 2020. \raNote{Needs citations } \url{https://en.wikipedia.org/wiki/EMV#Implementation}
+
+% To understand the issue of payment card transaction security, it is important to understand not only that roll-out of EMV and contactless payments is widespread in 2021, but also to understand the speed of that roll-out and how that varies by geography. Should new issues arise with modern payment technologies, and new technologies are needed to address the issues, regulators and payment card providers should pay attention to the speed of the EMV roll-out to understand how to promote the fastest roll-out possible to protect consumers from fraud.
+
+\subsection{Academic study of consumer protection issues on the internet}
+There is a rich literature studying consumer protection issues on the internet, which we explore in greater depth in Chapter \ref{ch:background}. A central tool in studying web is the web crawl: the usage of automated software, called crawlers, to fetch web pages of interest. When a web crawler includes a data extraction mechanism, called parsers, it is often called a ``web scraper". In the literature, web crawls are often conducted a single time, collecting a view of each targeted page and treating that as the whole picture.
+
+This view presents consumer protection issues as static. In contrast our work focuses on observing changes between web crawls. One type of change we show is that these issues form a moving target, and that researchers need to consider not just the current state of affairs, but how that state is actively changing.
+
+The second type of change we show is that we demonstrate that while web crawls are a powerful tool in analyzing consumer protection issues, the web is not a static place. In order to better grasp the issues at hand, it is important to take repeated measurements of the same pages. Just like you cannot measure the speed of an object with a single picture, some web phenomena cannot be observed in a single snapshot.
+
+\subsection{Ethical challenges in web crawling}
+Web crawling studies are not without ethical challenges. Web crawls can require a substantial amount of bandwidth. When too aggressive, a web crawler can act as a denial of service attack against the targeted websites. This can impede human users' access to the website. To address this issue, it is important to throttle web crawls, especially when the target site shows signs of slowing down.
+
+Additionally, due to the scale of web crawls, it is often impractical to inform all users that their data is to be used for research, much less go through a full informed consent process. Prior work has shown that users are not always comfortable with their online data being using for research purposes, although the comfort depends on the context~\cite{fiesler2018participant}. Researchers should take extra caution to minimize singling out specific users and to consider carefully the impacts of data release.
+
+Weighing the public benefit of research studies against the costs to both the targeted servers and users is a critical step.
+
+
+\section{Contributions}
+
+We divide our contributions into three components. First we present our methodology for collecting over 1 million privacy policies over more than 20 years, and we present our findings from our analysis of those privacy policies (Section \ref{sec:intro:privacypolicies}). Then we present our methodology for collecting over 12 million Yelp reviews and classification labels with spans up to eight years, and we present our findings from our analysis of those reviews (Section \ref{sec:intro:reviews}). Finally, we contribute our data and software for others to use in further research and to improve replicability of our work (Section \ref{sec:intro:datarelease}).
+
+%\raNote{Give much more detail in this section}
+
+
+\subsection{Privacy policies} \label{sec:intro:privacypolicies}
+We developed a web crawler which collects privacy policies from snapshots of websites hosted on the Internet Archive's Wayback Machine. Leveraging the Wayback Machine, we were able to collect privacy policies dating back to 1997. We used a combination of heuristics and machine learning to locate and identify privacy policies. 
+
+Using our dataset of privacy policies, we demonstrate that privacy policies are become longer and less readable over time, doubling and length and rising a 1/4 of a grade level on the Flesch-Kincaid Grade Level readability score. We show that 20\% of privacy policies link to other additional privacy policies, further increasing reader burden. We support prior work in showing the widespread impact of GDPR; for example, we show that GDPR coincided with a large number of text updates, changes in language used, and shift in word count. We show that privacy policies underreport tracking technologies and third parties.  We show that advertiser-driven self-regulatory bodies have grown while first-party-driven self-regulatory bodies have stagnated. 
+
+
+\subsection{Reviews} \label{sec:intro:reviews}
+We developed a web crawler which collects reviews from Yelp. We collected reviews that Yelp recommends and does not recommend, which is more thoroughly explained in~\cite{yelp2010recommendation}. We used two techniques to obtain a longitudinal aspect to our collection: the first is by comparing our collected data to that of prior work~\cite{mukherjee2013yelp}, the second is by repeated crawling of the same set of businesses for several months. We carefully chose our target sets to obtain three major cross-sections of the US: one target set focuses on the Chicago metropolitan area, giving us a view of reviews in a concentrated geographic area; the second is spread across the United States and stratified by population density; and the third is like the second but stratified by household income.
+
+We leverage our reviews dataset to present the first study on review reclassification, the phenomena where a review changes classification from Recommended to Not Recommended or vice-versa. We show that reclassification is common over the long-term, and that multiple reclassification events can happen on the same review, even in the short term. This calls into question the validity of the studies that depend on Yelp's classification labels as ground truth~\cite{rayana2015collective,kc2016temporal,mukherjee2013yelp,zhu2021ifspard,shehnepoor2017netspam,yao2017automated}. Furthermore, it highlights Yelp's own uncertainty in their classifications.
+
+We explore this reclassification phenomena deeper. We show that newer reviews experience more reclassification. We show that reviews and review classification are unevenly distributed across geographical regions. We explore the impact of mask-mentioning reviews and business masking rules on reviews, finding that mask mentions correspond to lower review ratings and that while masking rules also correspond to lower review ratings, this effect diminishes after Not Recommended reviews are removed.
+
+\subsection{Data and software release} \label{sec:intro:datarelease}
+For both our work on privacy policies and reviews, we contribute our collected data, our collection code, and our analysis code for others to use. Our datasets are, to our knowledge, the largest longitudinal datasets of their type.
+
+We release the largest longitudinal dataset of privacy policies, available for use by the general public. Our dataset contains 1,071,488 documents from 131k websites. Our data can be requested at \par
+\url{https://privacypolicies.cs.princeton.edu/}\\
+ and our code can be accessed at \par
+\url{https://github.com/citp/PrivacyPoliciesOverTime/}. As of publication, we have received \raNote{X} access requests.
+
+We also release the largest longitudinal dataset of online reviews, available for use by researchers. Our dataset consists of three sub-datasets. The first is around 200k reviews that can be combined with the data from prior work~\cite{mukherjee2013yelp} to perform comparisons across an eight year timespan. The second sub-dataset consists of over 10 million reviews collected in 8 intervals over 11 months concentraded in the Chicago metropolitan area. The final consists of over 2.5 million reviews from businesses across the US, randomly sampled and stratified by both population density and household income, collected in 4 intervals over 4 months. Our data is pseudonymized, but non-peudonymous data is available with sufficient justification. Our data can be requested at\par
+\url{https://sites.google.com/princeton.edu/longitudinal-review-data/}\\
+and our code can be accessed at\par
+\url{https://github.com/citp/LongitudinalReviews}.
+
+% Prior work analyzing changes in corpuses? Prior work analyzing changes in recommender systems?
 
 
 
@@ -29,4 +90,10 @@ Prior work analyzing changes in corpuses? Prior work analyzing changes in recomm
 
 In this work, our contributions are two large-scale, longitudinal web crawls and corresponding analyses studying consumer protection issues. 
 
-We will explore background material on consumer protection in Chapter \ref{ch:background}. In Chapter \ref{ch:ppot} we present our work on longitudinal collection and analysis of privacy policies. \raNote{Something about 1M policies, some key findings, some takeaways} We will switch gears to our work on longitudinal collection and analysis of reviews on Yelp in Chapter \ref{ch:rim}. \raNote{Something about 12M reviews, some key findings, some takeaways} Finally, we'll discuss takeaways and future work in Chapter \ref{ch:conclusion}. \raNote{flesh this out a little more. Give some ``sneak peeks''}
+We will explore background material on consumer protection in Chapter \ref{ch:background}, including an overview of relevant consumer protection laws (Section \ref{sec:background:laws}), the use of web crawls to study consumer protection (Section \ref{sec:background:crawls}), related work on privacy policies (Section \ref{sec:ppot:related}), and related work on online reviews (Section \ref{sec:rim:related_work}).
+
+In Chapter \ref{ch:ppot} we present our work on longitudinal collection and analysis of privacy policies. We detail our methodology for collecting and filtering over 1 million privacy policies over a 20 year span in Section \ref{sec:ppot:dataset}. We then discuss our analyses of the data, including the contributions listed above, in Sections \ref{sec:ppot:doclevstatstime}, \ref{sec:ppot:analysis}.% \raNote{Something about 1M policies, some key findings, some takeaways}
+
+In the following chapter, we discuss to our work on longitudinal collection and analysis of reviews on Yelp in Chapter \ref{ch:rim}. In Section \ref{sec:rim:dataset}, we present our methodology for collecting over 12 million online reviews on Yelp with three distinct cross-sections. Following that, we explore the data, including the contributions listed above, in section \ref{sec:rim:results}.% \raNote{Something about 12M reviews, some key findings, some takeaways} 
+
+Finally, we'll discuss takeaways and future work in Chapter \ref{ch:conclusion}. 
