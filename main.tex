@@ -55,7 +55,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
 %%%% Author & title page info
 
-\title{Consumer protection on the Web with longitudinal web crawls and analysis}
+\title{Consumer Protection on the Web with Longitudinal Web Crawls and Analysis}
 
 \submitted{April 2022}  % degree conferral date (January, April, June, September, or November)
 \copyrightyear{2022}  % year in which the copyright is secured by publication of the dissertation.
@@ -163,6 +163,7 @@
 \fi % proquest or online formatting
 \fi % printed or online formatting
 
+\usepackage{xurl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
 %%%% Define commands
@@ -202,8 +203,10 @@
   {\end{list}}
   
   
-%Note command
-\newcommand{\raNote}[1]{{\color{blue}[{{#1}}]}}
+
+
+% Fix possessive on \citet
+\newcommand\cites[1]{\citeauthor{#1}'s\ \cite{#1}}
 
 
 
@@ -232,10 +235,9 @@
 \input{acknowledgements}
 }
 
-\dedication{To ...}
+\dedication{To those who are watching out for consumers' rights}
 
 \fi  % disable frontmatter
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
@@ -261,6 +263,9 @@
 \begin{document}
 
 \makefrontmatter
+
+
+\input{constants}
 
 
 % If you've disabled frontmatter, you can insert the toc manually

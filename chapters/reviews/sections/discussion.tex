@@ -1,27 +1,21 @@
 \section{Discussion} \label{sec:rim:discussion}
 Online reviews are part of an actively evolving landscape with significant economic consequences. In this paper, we have examined this landscape from four different cross-sections: a course-grained eight year view;
-a more fine-grained, eleven month view focused on one region; a four month view sampled from the whole US stratified by density; and a second four month view stratified by income. Each of these datasets is available for other researchers to use.
+a more fine-grained, eleven month view focused on one region; a four month view sampled from the whole US stratified by density; and a second four month view stratified by income. Each of these datasets is available for other researchers to use. 
 
-Reviews on Yelp routinely move between classifications, in both directions, occasionally multiple times. Newer reviews are less stable in their classification, but even old reviews are still subject to occasional reclassification, even multiple reclassifications. These reclassifications are often connected to the review author. Density and income are connected to the number of reviews per business and how frequently reviews are reclassified. Finally, both discussion of masks and, to a lesser extent, declaring a mask policy, impact the ratings given by reviewers.
 
-Our results have implications for platforms and regulators. Our reclassification results demonstrate the uncertainty in the recommendation process. This calls for transparency on the part of the platform; Yelp's policy of making Not Recommended reviews available helps here. Furthermore, platforms should be cautious about changing classification until they are confident the review is not problematic. 
-%\pmNote{what are the recommendations based on our reclassification analysis in coarse/fine data crawls?}
-Platforms and regulators should consider carefully any discrepancies by density and income: are there steps that can be taken to address these inequities? Our observations surrounding masking policies suggest public backlash against a mask policy decision is negligible, which may be due in part to Yelp's classifier.
+Reviews on Yelp routinely move between classifications, in both directions, occasionally multiple times. Newer reviews are less stable in their classification, but even old reviews are still subject to occasional reclassification, even multiple reclassifications. These reclassifications are often connected to the review author. Density and income are connected to the number of reviews per business, the review classifications, and how frequently reviews are reclassified. We find both discussion of masks and, to a lesser extent, declaring a mask policy, impact the ratings given by reviewers. Our methodology can offer insight into an opaque process for reviewers, consumers, and businesses who might not understand why their review was blocked or why the reviews they see change.
+
+Our results have implications for platforms and policymakers. Our reclassification results demonstrate the uncertainty in the recommendation process. We suggest other platforms consider a greater transparency model with their reviews, similar to Yelp’s model---that platforms should remove, but still make accessible, reviews believed to be problematic. Furthermore, platforms should be cautious about changing classification until they are confident the review is not problematic. Platforms and regulators should consider carefully any discrepancies by density and income: are there steps that can be taken to address these inequities? Our observations surrounding masking policies suggest public backlash against a business's mask policy decision is negligible, which may be due in part to Yelp's classifier.
+
+
 
 
 \subsection{Limitations} \label{subsec:rim:limitations}
-%\raNote{Make this more delicate}
 
 Our study is limited to a single platform and a single country, so it may not be representative of trends on other platforms or other countries. Our study period includes the COVID-19 pandemic, a period of substantial social and economic disruption~\cite{altig2020economic,deb2020economic}. Furthermore, local median income and population density may not completely describe the businesses and reviewers; for example reviewers may travel from another area to the business or the area may be heterogeneous.
 
-%There is also some variation in the spacing between crawls, with the separation between crawl starts ranging from 1 month to 2.5 months. 
-%\pmNote{why is this variation a limitation? maybe rephrase to say that the granularity of our crawls is approximately on the order of a month, and that we may have missed reclassifications in between etc. But this would make our analysis *conservative*, so would be good to mention that}
-
 We expect that we may have missed reclassifications that occurred between crawl points and our crawler may have missed reviews (e.g. if the reviews reordered mid-crawl due to a new review). This means that some reviews may have been reclassified more frequently than we observed.
-%\pmNote{does our analysis require completeness? if we don't make any claims about completeness, consider omitting this to simplify the discussion}
 
-We also do not have a complete view of the review space---we have limited information on reviews removed for terms of service violations and no information on reviews removed by their author before our first crawl. Some of these reviews may be reviews of interest---for example, some problematic reviews may be removed entirely instead of made Not Recommended. %\pmNote{why is ToS violation removal important for our analysis? if some reviews were removed before our crawl, what is the impact on the analysis? If not important, consider removing the limitation}
+We also do not have a complete view of the review space---we have limited information on reviews removed for terms of service violations and no information on reviews removed by their author before our first crawl. Some of these reviews may be reviews of interest---for example, some problematic reviews may be removed entirely instead of made Not Recommended.
 
-% Our quality checks should help mitigate this concern.
-%\pmNote{this is a very important point: a reviewer may bring this up when looking at the crawling methodology too. Why don't we random sample some reviews manually to see if content/filtering decision is a match? and if we did, we should mention this as a validation in the crawling section and skip mentioning it as a limitation}
-%\pmNote{important: if we list this limitation, then lets briefly remind the reader of the validation step again here.}
+We hope that our work brings momentum to the longitudinal study of review platforms. To that end, our data, crawler, and analysis code is available at \url{https://sites.google.com/princeton.edu/longitudinal-review-data/}.

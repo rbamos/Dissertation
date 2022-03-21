@@ -2,6 +2,7 @@
 \ProvidesClass{puthesis}
          [2008/05/02 v1.4 Princeton University Thesis class]
 \RequirePackage{setspace}
+\RequirePackage{svg}
 \newcounter{subyear}
 \setcounter{subyear}{\number\year}
 \def\submitted#1{\gdef\@submitted{#1}}
@@ -103,7 +104,11 @@
   \thispagestyle{empty}
   \vspace*{0in}
   \begin{center}
-    \copyright\ Copyright ... to be changed to CC-BY-SA by \@author, \@copyrightyear.  All rights reserved.
+    \copyright\ Copyright \@author, \@copyrightyear.
+    \\~\\
+    \includesvg[width=0.2\columnwidth]{cc-by-sa.svg}
+    \\
+    This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License. (\url{https://creativecommons.org/licenses/by-sa/4.0/})
   \end{center}
   \clearpage}
 \newcommand*{\makeabstract}{

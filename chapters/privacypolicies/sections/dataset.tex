@@ -49,7 +49,7 @@ In order to understand the structure and biases of the data, we discuss the data
 \begin{figure}[]
 \centering
 \includegraphics[width=0.99\columnwidth]{chapters/privacypolicies/figures/policy_homepage_counts.pdf}
-\caption{The number of homepage snapshots and privacy policies for each interval. Note that each bar represents one interval and there are two intervals per year.}
+\caption[The number of homepage snapshots and privacy policies for each interval]{The number of homepage snapshots and privacy policies for each interval. Note that each bar represents one interval and there are two intervals per year.}
 %\Description[Bar plot of homepages versus policies, by year]{Generally, there are many more homepages than policies. The number of policies peaks in 2015 but declines slightly. The number of homepages roughly matches the same trend as the number of policies. }
 \label{fig:numpolicies}
 \end{figure}
@@ -64,7 +64,7 @@ The decreases in the number of policies in 2009B and 2018A also occur in the num
 \centering
 \includegraphics[width=1\columnwidth]{chapters/privacypolicies/figures/category_dist.pdf}
 
-\caption{The distribution of website categories for present and missing sites. ``Other'' is composed of the 27 least frequent categories for English language websites. Websites which belong to multiple categories are counted once per category. Websites with no listed categories are added to the ``uncategorized'' category.}
+\caption[Distribution of website categories]{The distribution of website categories for present and missing sites. ``Other'' is composed of the 27 least frequent categories for English language websites. Websites which belong to multiple categories are counted once per category. Websites with no listed categories are added to the ``uncategorized'' category.}
 %\Description[Histogram of category vs number of websites]{This diagram shows the number of websites that we tried to capture and that we succeeded in extracting an English language policy from. Categories in descending order: business, education, informationtech, entertainment, shopping, other, uncategorized, parked, adult, newsandmedia, games, economyandfinance, travel, sports, streamingmedia, illegalcontent.}
 \label{fig:cat_dist}
 \end{figure}
@@ -76,7 +76,7 @@ Just a few categories dominate both our dataset and English websites in general,
 
 {\textbf{Distribution of snapshot Alexa ranks.}}
 The distribution of homepages and snapshots by Alexa rank is shown in Table~\ref{tab:rate-of-download-per-rank-bin}.
-The >1M bin contains snapshots for which we do not have an Alexa rank, either because they were not listed in the Alexa top 1M or were captured
+The $>1\text{M}$ bin contains snapshots for which we do not have an Alexa rank, either because they were not listed in the Alexa top 1M or were captured
 before 2009.
 While the majority of our policies come from websites with rank 100K and up, the success rate of obtaining a policy is much higher if the website is in the top 10K. 
 
@@ -93,7 +93,7 @@ While the majority of our policies come from websites with rank 100K and up, the
 \textgreater 1M & 2,786,853 & 268,394 & 9.6  \\ \bottomrule
 \end{tabular}%
 }
-\caption{Rate of successful privacy downloads per Alexa rank buckets -- based on privacy policies in the analysis subcorpus.}
+\caption[Rate of successful privacy downloads by Alexa rank]{Rate of successful privacy downloads per Alexa rank buckets---based on privacy policies in the analysis subcorpus.}
 \label{tab:rate-of-download-per-rank-bin}
 \end{table}
 
